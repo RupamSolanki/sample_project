@@ -1,0 +1,13 @@
+
+™python:S1192¥"{Define a constant instead of duplicating this literal 'Ensure this value is greater than or equal to {min_value}.' 4 times.(„³‚‘ýÿÿÿÿ
+–python:S1192¤"xDefine a constant instead of duplicating this literal 'Ensure this value is less than or equal to {max_value}.' 4 times.(÷ÿÿ‘üÿÿÿÿ
+qpython:S1192¦"XDefine a constant instead of duplicating this literal 'String value too large.' 3 times.(Ã³úÂ
+Hpython:S1066à"/Merge this if statement with the enclosing one.(ãåßñ
+rpython:S3776´"TRefactor this function to reduce its Cognitive Complexity from 17 to the 15 allowed.(Ê‡Ô¸ùÿÿÿÿ
+rpython:S3776«"TRefactor this function to reduce its Cognitive Complexity from 17 to the 15 allowed.(ÎÉªÄúÿÿÿÿ
+@python:S5781Æ"(Change or remove duplicates of this key.(­Âæ	
+Fpython:S5781Î"(Change or remove duplicates of this key.(í”ÖÓøÿÿÿÿ
+mpython:S3776¯	"TRefactor this function to reduce its Cognitive Complexity from 16 to the 15 allowed.(û½½¼
+mpython:S3776ë	"TRefactor this function to reduce its Cognitive Complexity from 18 to the 15 allowed.(û½½¼
+mpython:S3776­
+"TRefactor this function to reduce its Cognitive Complexity from 17 to the 15 allowed.(û½½¼

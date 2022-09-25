@@ -1,0 +1,16 @@
+constants = {
+    "Data": "Data",
+    "Error": "Error",
+    "Message": "Message",
+    "Book": "book",
+    "SuccessfullyAdded": "{} added successfully.",
+    "SuccessfullyFetched": "{} fetched successfully.",
+    "AlreadyExist": "{} is already exist.",
+    "DoseNotExist": "{} does not exist with the given criteria.",
+    "SuccessfullyUpdated": "{} updated successfully.",
+    "UpdatingBook": "updating book",
+    "SuccessfullyDeleted": "{} deleted successfully.",
+    "ErrorMessage":  "Some value was wrong or you are missing some value when {}.",
+    "SomethingWentWrong": "Something went wrong when {}.",
+    "URLNotFound": "{} not found.",
+}

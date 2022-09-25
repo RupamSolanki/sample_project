@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <title>{% block title%}{% endblock title %}</title>
+</head>
+<body>
+<div class="container-fluid">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
+        <a class="navbar-brand" href="{% url 'book_view' %}">Book App</a>
+        {% if request.user.is_authenticated %}
+        <p class="h6 text-success">{{request.user.username}}</p>
+        <form class="form-inline" action="{% url 'user_logout' %}" method="post">
+            {% csrf_token %}
+            <input class="btn btn-outline-dark my-2 my-sm-0" type="submit" value="Logout">
+        </form>
+        {% endif %}
+    </nav>
+</div>
+
+
+
+{% for message in messages %}
+<div class="alert  alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+  {{ message }}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+
+
+<br>
+
+<div class="container">
+    <div class="row">
+        {% block partition_1 %} {% endblock partition_1 %}
+        {% block partition_2 %} {% endblock partition_2 %}
+    </div>
+</div>
+<script src="{% static 'js/popper.js' %}"></script>
+<script src="{% static 'js/bootstrap.js' %}"></script>
+</body>
+</html>

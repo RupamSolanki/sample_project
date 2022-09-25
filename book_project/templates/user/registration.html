@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title%}Register User{% endblock title %}
+
+{% block partition_1 %}
+<div class="container col-sm-6">
+  <h4 class="text-center alert alert-info">Register here.</h4>
+<form action="", method="post">
+
+  {% csrf_token %}
+  {{register_form.as_p}}
+  <input type="submit" class="btn btn-dark" value="SignUp" name="registerrequset">
+</form>
+</div>
+{% endblock partition_1 %}
+
+{% block partition_2 %}
+<div class="container col-sm-4">
+    <h4 class="text-center alert alert-info">Already have an account.</h4>
+    <form action="{% url 'user_login' %}" method="POST">
+        {% csrf_token %}
+        {{login_form.as_p}}
+        <input type="submit" class="btn btn-secondary" value="login" name="login">
+    </form>
+</div>
+{% endblock partition_2 %}

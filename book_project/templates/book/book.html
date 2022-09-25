@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% block title%}Book App{% endblock title %}
+{% block partition_1 %}
+<div class="container col-sm-8">
+    <h4 class="text-center alert alert-success">Book List</h4>
+    {% if books %}
+    <table class="table table-borderless table-light">
+        <thead>
+        <tr>
+            {{book}}
+            <th scope="col">Id</th>
+            <th scope="col">Title</th>
+            <th scope="col">Category</th>
+            <th scope="col">Author</th>
+            {% if request.user.is_superuser %}
+            <th scope="col">Action</th>
+            {% endif %}
+        </tr>
+        </thead>
+        <tbody>
+        {% for book in books %}
+        <tr>
+            <th scope="row">{{book.id}}</th>
+            <td><a href=" {% url 'book_detail' book.slug %}" style="text-decoration: none;">{{book.title}}</a></td>
+            <td>{{book.category}}</td>
+            <td>{{book.author}}</td>
+            {% if request.user.is_superuser %}
+            <td>
+                <ul class="list-group list-group-horizontal">
+                    <li class="list-group-item border-0 bg-light">
+                        <a href="{% url 'book_edit' book.slug %}" class="btn btn-secondary btn-sm">Edit</a>
+                    </li>
+                    <li class="list-group-item border-0 bg-light">
+                        <form action="{% url 'book_delete' book.slug %}" method="post">{% csrf_token %}<input
+                                type="submit"
+                                class="btn btn-secondary btn-sm"
+                                value="Delete">
+                        </form>
+                    </li>
+                </ul>
+            </td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div>
+
+        <nav aria-label="...">
+            <ul class="pagination">
+
+                <li class="page-item  {% if not books.has_previous %}disabled{% endif %}">
+                    <a class="page-link"
+                       href="{% if books.has_previous %}?page={{books.previous_page_number }}{% endif %}"
+                       tabindex="{{books.number}}">Previous</a>
+                </li>
+
+                {% for index in books.paginator.page_range %}
+                <li class="page-item  {% if books.number == index %}active{% endif %}"><a class="page-link"
+                                                                                          href="?page={{index}}">{{index}}</a>
+                </li>
+                {% endfor %}
+
+
+                <li class="page-item {% if not books.has_next %}disabled{% endif %}">
+                    <a class="page-link"
+                       href="{% if books.has_next %}?page={{ books.next_page_number }}{% endif %}">Next</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    {% else %}
+    <h6 class="test-center alert alert-info">No Records found</h6>
+    {% endif %}
+</div>
+
+{% endblock partition_1 %}
+
+{% block partition_2 %}
+{% if request.user.is_superuser %}
+<div class="container col-sm-4">
+    <h4 class="text-center alert alert-info">Add Book</h4>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" class="btn btn-success" value="Add">
+    </form>
+
+</div>
+{% endif %}
+{% endblock partition_2 %}

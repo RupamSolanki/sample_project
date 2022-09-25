@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title%}{% if form and request.user.is_superuser %}}Edit Book{% else %}Book App {% endif %}{% endblock title %}
+
+{% block partition_1 %}
+<div class="container col-sm-8">
+    {% if form and request.user.is_superuser %}
+    <div class="container">
+        <h4 class="text-center alert alert-info">Edit Book</h4>
+        <form action="{% url 'book_edit' form.instance.slug %}" method="post">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type="submit" class="btn btn-secondary" value="Edit">
+            <a class="btn btn-secondary" href="{{request.META.HTTP_REFERER|escape}}">Cancel</a>
+        </form>
+
+    </div>
+
+    {% else %}
+    <h6 class="text-center alert alert-success">{{book.title}}</h6>
+    <p>{{book.description}}</p></br>
+    <p>Category: {{book.category}}</p> <br>
+    <p>Autjor: {{book.author}}</p><br>
+
+        <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+                <a class="btn btn-secondary btn-sm" href="{% url 'book_view' %}">Back</a>
+            </li>
+            {% if request.user.is_superuser %}
+            <li class="list-group-item border-0">
+                <a class="btn btn-secondary btn-sm" href="{% url 'book_edit' book.slug %}">Edit</a>
+            </li>
+            <li class="list-group-item border-0">
+                <form action="{% url 'book_delete' book.slug %}" method="post">{% csrf_token %}<input type="submit"
+                                                                                                      class="btn btn-secondary btn-sm"
+                                                                                                      value="Delete">
+                </form>
+            </li>
+        </ul>
+        {% endif %}
+    {% endif %}
+</div>
+
+{% endblock partition_1 %}
+
+
